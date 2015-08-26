@@ -220,6 +220,16 @@ class TokenizerTest < Test::Unit::TestCase
     ], tokens)
   end
 
+  def test_unicode_ident
+    tokens = @tokenizer.tokenize("öäüõ = 'foo';")
+    assert_tokens([
+                 [:IDENT, 'öäüõ'],
+                 ['=', '='],
+                 [:STRING, "'foo'"],
+                 [';', ';'],
+    ], tokens)
+  end
+  
   %w{
     break case catch continue default delete do else finally for function
     if in instanceof new return switch this throw try typeof var void while
