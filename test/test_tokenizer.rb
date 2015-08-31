@@ -229,6 +229,12 @@ class TokenizerTest < Test::Unit::TestCase
                  [';', ';'],
     ], tokens)
   end
+
+  def test_invalid_unicode_ident
+    assert_raises(RKelly::SyntaxError) do
+      @tokenizer.tokenize("☺ = 'foo';")
+    end
+  end
   
   %w{
     break case catch continue default delete do else finally for function
