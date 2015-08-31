@@ -196,6 +196,7 @@ module RKelly
       accepting_regexp = true
       while !scanner.eos?
         token = match_lexeme(scanner, accepting_regexp)
+        raise RKelly::SyntaxError unless token
 
         if token.name != :S
           accepting_regexp = followable_by_regex(token)
