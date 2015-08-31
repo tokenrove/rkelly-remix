@@ -87,6 +87,11 @@ class TokenizerTest < Test::Unit::TestCase
     assert_tokens([[:IDENT, 'foo']], tokens)
   end
 
+  def test_dollar_sign_identifier
+    tokens = @tokenizer.tokenize("$foo")
+    assert_tokens([[:IDENT, '$foo']], tokens)
+  end
+
   def test_ignore_identifier
     tokens = @tokenizer.tokenize("0foo")
     assert_tokens([[:NUMBER, 0], [:IDENT, 'foo']], tokens)
