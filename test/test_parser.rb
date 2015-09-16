@@ -1431,4 +1431,10 @@ class ParserTest < Test::Unit::TestCase
   def for_loop_sexp(init, test = [:less, [:resolve, 'foo'], [:lit, 10]], exec = [:postfix, [:resolve, 'foo'], '++'])
     [[:for, init, test, exec, [:block, [[:var, [[:var_decl, :x, [:assign, [:lit, 10]]]]]]]]]
   end
+
+  def test_stray_brackets_raise_syntax_error
+    assert_raises(RKelly::SyntaxError) do
+      RKelly::Parser.new.parse "var a, []"
+    end
+  end
 end
