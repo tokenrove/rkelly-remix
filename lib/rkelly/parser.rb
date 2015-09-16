@@ -46,7 +46,7 @@ module RKelly
     end
 
     def yyabort
-      raise "something bad happened, please report a bug with sample JavaScript"
+      raise RKelly::SyntaxError, 'something bad happened, please report a bug with sample JavaScript'
     end
 
     # When parsing finishes without all tokens being parsed, returns
